@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css" />
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet-heat.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/OSMBuildings-Leaflet.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="data/Damlocation0.js"></script>
+        <script src="data/Toneshinchaung1.js"></script>
+        <script src="data/Lawdin2.js"></script>
+        <script src="data/Khankang3.js"></script>
+        <script src="data/Gawlang4.js"></script>
+        <script src="data/PilotVillages5.js"></script>
+        <script>
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[25.5487936441,97.2041631852],[26.7396075661,99.6449516881]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var feature_group = new L.featureGroup([]);
+        var bounds_group = new L.featureGroup([]);
+        var raster_group = new L.LayerGroup([]);
+        function setBounds() {
+        }
+        function geoJson2heat(geojson, weight) {
+          return geojson.features.map(function(feature) {
+            return [
+              feature.geometry.coordinates[1],
+              feature.geometry.coordinates[0],
+              feature.properties[weight]
+            ];
+          });
+        }
+        function pop_Damlocation0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['qc_id'] !== null ? Autolinker.link(String(feature.properties['qc_id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['oid_'] !== null ? Autolinker.link(String(feature.properties['oid_'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['folderpath'] !== null ? Autolinker.link(String(feature.properties['folderpath'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['symbolid'] !== null ? Autolinker.link(String(feature.properties['symbolid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['altmode'] !== null ? Autolinker.link(String(feature.properties['altmode'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['base'] !== null ? Autolinker.link(String(feature.properties['base'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['snippet'] !== null ? Autolinker.link(String(feature.properties['snippet'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['popupinfo'] !== null ? Autolinker.link(String(feature.properties['popupinfo'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['haslabel'] !== null ? Autolinker.link(String(feature.properties['haslabel'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['labelid'] !== null ? Autolinker.link(String(feature.properties['labelid'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_Damlocation0() {
+            return {
+                pane: 'pane_Damlocation0',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(146,95,146,1.0)',
+            }
+        }
+        map.createPane('pane_Damlocation0');
+        map.getPane('pane_Damlocation0').style.zIndex = 600;
+        map.getPane('pane_Damlocation0').style['mix-blend-mode'] = 'normal';
+        var layer_Damlocation0 = new L.geoJson(json_Damlocation0, {
+            pane: 'pane_Damlocation0',
+            onEachFeature: pop_Damlocation0,
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, style_Damlocation0(feature))
+            }
+        });
+        bounds_group.addLayer(layer_Damlocation0);
+        feature_group.addLayer(layer_Damlocation0);
+        function pop_Toneshinchaung1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['qc_id'] !== null ? Autolinker.link(String(feature.properties['qc_id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gridcode'] !== null ? Autolinker.link(String(feature.properties['gridcode'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['shape_leng'] !== null ? Autolinker.link(String(feature.properties['shape_leng'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['shape_area'] !== null ? Autolinker.link(String(feature.properties['shape_area'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_Toneshinchaung1() {
+            return {
+                pane: 'pane_Toneshinchaung1',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(153,19,33,1.0)',
+            }
+        }
+        map.createPane('pane_Toneshinchaung1');
+        map.getPane('pane_Toneshinchaung1').style.zIndex = 601;
+        map.getPane('pane_Toneshinchaung1').style['mix-blend-mode'] = 'normal';
+    var layer_Toneshinchaung1 = new L.geoJson(json_Toneshinchaung1, {
+        pane: 'pane_Toneshinchaung1',
+        onEachFeature: pop_Toneshinchaung1,
+        style: style_Toneshinchaung1
+    });
+        bounds_group.addLayer(layer_Toneshinchaung1);
+        feature_group.addLayer(layer_Toneshinchaung1);
+        function pop_Lawdin2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['qc_id'] !== null ? Autolinker.link(String(feature.properties['qc_id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gridcode'] !== null ? Autolinker.link(String(feature.properties['gridcode'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['shape_leng'] !== null ? Autolinker.link(String(feature.properties['shape_leng'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['shape_area'] !== null ? Autolinker.link(String(feature.properties['shape_area'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_Lawdin2() {
+            return {
+                pane: 'pane_Lawdin2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(29,230,217,1.0)',
+            }
+        }
+        map.createPane('pane_Lawdin2');
+        map.getPane('pane_Lawdin2').style.zIndex = 602;
+        map.getPane('pane_Lawdin2').style['mix-blend-mode'] = 'normal';
+    var layer_Lawdin2 = new L.geoJson(json_Lawdin2, {
+        pane: 'pane_Lawdin2',
+        onEachFeature: pop_Lawdin2,
+        style: style_Lawdin2
+    });
+        bounds_group.addLayer(layer_Lawdin2);
+        feature_group.addLayer(layer_Lawdin2);
+        function pop_Khankang3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['qc_id'] !== null ? Autolinker.link(String(feature.properties['qc_id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gridcode'] !== null ? Autolinker.link(String(feature.properties['gridcode'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['shape_leng'] !== null ? Autolinker.link(String(feature.properties['shape_leng'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['shape_area'] !== null ? Autolinker.link(String(feature.properties['shape_area'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_Khankang3() {
+            return {
+                pane: 'pane_Khankang3',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(80,83,137,1.0)',
+            }
+        }
+        map.createPane('pane_Khankang3');
+        map.getPane('pane_Khankang3').style.zIndex = 603;
+        map.getPane('pane_Khankang3').style['mix-blend-mode'] = 'normal';
+    var layer_Khankang3 = new L.geoJson(json_Khankang3, {
+        pane: 'pane_Khankang3',
+        onEachFeature: pop_Khankang3,
+        style: style_Khankang3
+    });
+        bounds_group.addLayer(layer_Khankang3);
+        feature_group.addLayer(layer_Khankang3);
+        function pop_Gawlang4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['qc_id'] !== null ? Autolinker.link(String(feature.properties['qc_id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gridcode'] !== null ? Autolinker.link(String(feature.properties['gridcode'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['shape_leng'] !== null ? Autolinker.link(String(feature.properties['shape_leng'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['shape_area'] !== null ? Autolinker.link(String(feature.properties['shape_area'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_Gawlang4() {
+            return {
+                pane: 'pane_Gawlang4',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(147,170,213,1.0)',
+            }
+        }
+        map.createPane('pane_Gawlang4');
+        map.getPane('pane_Gawlang4').style.zIndex = 604;
+        map.getPane('pane_Gawlang4').style['mix-blend-mode'] = 'normal';
+    var layer_Gawlang4 = new L.geoJson(json_Gawlang4, {
+        pane: 'pane_Gawlang4',
+        onEachFeature: pop_Gawlang4,
+        style: style_Gawlang4
+    });
+        bounds_group.addLayer(layer_Gawlang4);
+        feature_group.addLayer(layer_Gawlang4);
+        function pop_PilotVillages5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['qc_id'] !== null ? Autolinker.link(String(feature.properties['qc_id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['oid_'] !== null ? Autolinker.link(String(feature.properties['oid_'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['folderpath'] !== null ? Autolinker.link(String(feature.properties['folderpath'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['symbolid'] !== null ? Autolinker.link(String(feature.properties['symbolid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['altmode'] !== null ? Autolinker.link(String(feature.properties['altmode'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['base'] !== null ? Autolinker.link(String(feature.properties['base'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['snippet'] !== null ? Autolinker.link(String(feature.properties['snippet'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['popupinfo'] !== null ? Autolinker.link(String(feature.properties['popupinfo'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['haslabel'] !== null ? Autolinker.link(String(feature.properties['haslabel'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['labelid'] !== null ? Autolinker.link(String(feature.properties['labelid'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_PilotVillages5() {
+            return {
+                pane: 'pane_PilotVillages5',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(30,236,236,1.0)',
+            }
+        }
+        map.createPane('pane_PilotVillages5');
+        map.getPane('pane_PilotVillages5').style.zIndex = 605;
+        map.getPane('pane_PilotVillages5').style['mix-blend-mode'] = 'normal';
+        var layer_PilotVillages5 = new L.geoJson(json_PilotVillages5, {
+            pane: 'pane_PilotVillages5',
+            onEachFeature: pop_PilotVillages5,
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, style_PilotVillages5(feature))
+            }
+        });
+        bounds_group.addLayer(layer_PilotVillages5);
+        feature_group.addLayer(layer_PilotVillages5);
+        raster_group.addTo(map);
+        feature_group.addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
